@@ -1,0 +1,20 @@
+
+<dd class="item clearfix">
+    <div class="item-row">
+        <div class="col col-1">
+            <div class="g-pic">
+                <img src="{{ order['image'] }}" srcset="{{ order['image'] }} 2x" width="40" height="40">
+            </div>
+            <div class="g-info">{{ order['name'] }}</a></div>
+        </div>
+
+        <div class="col col-2">{{ order['price'] }}元</div>
+        <div class="col col-3">{{ order['number'] }}</div>
+        <!--                                    此处直接使用表达式计算-->
+        <!--                                    <div class="col col-4">{{ order['price']*order['number'] }}</div>-->
+        <!--                                    此处使用提前定义的计算函数-->
+        {% from Lessons.Chapter5.tornado_practice.util import calc %}
+        <div class="col col-4">{{ calc(order['price'], order['number']) }}</div>
+        {{ total = total + calc(order['price'], order['number']) }}
+    </div>
+</dd>
